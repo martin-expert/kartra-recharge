@@ -1,0 +1,162 @@
+
+<div data-embed="true">
+
+    <!-- Style Are -->
+
+        <style type="text/css">
+            input[type="radio"][name="custom_selected_product"] {
+                -webkit-appearance: none;
+                background-color: #fafafa;
+                border: 1px solid #cacece;
+                box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);
+                padding: 9px;
+                border-radius: 50px;
+                display: inline-block;
+                position: relative;
+            }
+
+            input[type="radio"][name="custom_selected_product"]:checked:after {
+                content: ' ';
+                width: 12px;
+                height: 12px;
+                border-radius: 50px;
+                position: absolute;
+                top: 3px;
+                background: #99a1a7;
+                box-shadow: inset 0px 0px 10px rgba(0,0,0,0.3);
+                text-shadow: 0px;
+                left: 3px;
+                font-size: 32px;
+            }
+
+            input[type="radio"][name="custom_selected_product"]:checked {
+                background-color: #e9ecee;
+                color: #99a1a7;
+                border: 1px solid #adb8c0;
+                box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05), inset 15px 10px -12px rgba(255,255,255,0.1), inset 0px 0px 10px rgba(0,0,0,0.1);
+            }
+
+            input[type="radio"][name="custom_selected_product"]:active, input[type="radio"][name="custom_selected_product"]:checked:active {
+                box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px 1px 3px rgba(0,0,0,0.1);
+            }
+        </style>
+
+    <!-- HTML Area -->
+        <div class="input-wrapper">
+            <input type="radio" name="custom_selected_product" id="selected_product_1" value="1" checked="checked">
+                <label for="selected_product_1" data-product_id="">buy Derma Roller</label>
+            <br>
+        </div>
+        <div class="input-wrapper">
+            <input type="radio" name="custom_selected_product" id="selected_product_2" value="2">
+                <label for="selected_product_2" data-product_id="">Subscription</label>
+            <br>
+        </div>
+        <div class="input-wrapper">
+            <input type="radio" name="custom_selected_product" id="selected_product_3" value="3">
+                <label for="selected_product_3">Buy 1 Derma Roller + 1 Vitamin C Serum Combo</label>
+            <br>
+        </div>
+
+    <!-- Scripts Area -->
+        <script type="text/javascript">
+
+            console.log('before')
+
+            var productsArray = [
+                {
+                    "data-funnel-id"            :    "71431",
+                    "data-product-id"           :    "71431",
+                    "data-price-point"          :    "fa5a04d3058f1c63b0760ff32a616c9f",
+                    "rel"                       :    "fa5a04d3058f1c63b0760ff32a616c9f",
+                    "data-kt-value"             :    "fa5a04d3058f1c63b0760ff32a616c9f",
+                }, {
+                    "data-funnel-id"            :    "71433",
+                    "data-product-id"           :    "71433",
+                    "data-price-point"          :    "1474c2c1c9d9ead72af09b4a1bcd345d",
+                    "rel"                       :    "1474c2c1c9d9ead72af09b4a1bcd345d",
+                    "data-kt-value"             :    "1474c2c1c9d9ead72af09b4a1bcd345d",
+                }, {
+                    "data-funnel-id"            :    "74455",
+                    "data-product-id"           :    "74455",
+                    "data-price-point"          :    "fcc50999b4d866b075998b4c5c41e52b",
+                    "rel"                       :    "fcc50999b4d866b075998b4c5c41e52b",
+                    "data-kt-value"             :    "fcc50999b4d866b075998b4c5c41e52b",
+                }
+            ]
+
+            console.log('after')
+
+            $(document).ready(function() {
+                for (var i = 0; i < productsArray.length; i++) {
+                    var product_rel = productsArray[i]['rel'];
+                    if (typeof product_rel != 'undefined') {
+                        if ($('#popup_' + product_rel).length < 1) {
+                            appendModalTemplate(product_rel);
+                        }
+                    }
+                }
+            });
+
+            $('input[type="radio"][name="custom_selected_product"]').click(function() {
+                console.log('clicked');
+                var $self = $(this);
+                var $row = $self.closest('.row');
+                if ($row.length > 0) {
+                    var $btn = $row.find('.dg_popup');
+                    if ($btn.length > 0) {
+
+                        console.log($self.val());
+
+                        var valueObj = productsArray[$self.val() - 1];
+
+                        if (typeof valueObj['data-funnel-id'] != "undefined") {
+                            $btn.attr('data-funnel-id', valueObj['data-funnel-id']);
+                        }
+                        if (typeof valueObj['data-product-id'] != "undefined") {
+                            $btn.attr('data-product-id', valueObj['data-product-id']);
+                        }
+                        if (typeof valueObj['data-price-point'] != "undefined") {
+                            $btn.attr('data-price-point', valueObj['data-price-point']);
+                            $btn.closest('.js_trackable_wrapper').attr('id', ("js_trackable_wrapper_" + valueObj['data-price-point']));
+                        }
+                        if (typeof valueObj['rel'] != "undefined") {
+                            $btn.attr('rel', valueObj['rel']);
+                        }
+
+                        if (typeof valueObj['data-kt-value'] != "undefined") {
+                            $btn.attr('data-kt-value', valueObj['data-kt-value']);
+                        }
+                    }
+                }
+            });
+
+            function appendModalTemplate(product_rel) {
+                var template = '<div class="webinar-registration-overlay" style="top: 0px; display: none;" id="popup_'+ product_rel +'"><div style="margin: 0 auto; max-width: 500px;"><div id="popup_'+ product_rel +'_inner" style="height: 270px;"><div class="overlay-loading-screen" style="display: block;"><div class="overlay_inner"><img src="https://s3.amazonaws.com/kartra/internal/processing_new.gif"><span>Connecting to secure server...</span></div></div><iframe src="https://app.kartra.com/product/order_modal/'+ product_rel +'" id="the_frame_'+ product_rel +'" frameborder="0" name="the_frame_'+ product_rel +'" scrolling="no" style="height: 270px; max-width: 500px; width: 100vw; z-index: 1000000; display: none;"></iframe></div></div></div>';
+                $('body').append(template);
+            }
+
+            /**
+                {
+                    "data-funnel-id"            :    "71431",
+                    "data-product-id"           :    "71431",
+                    "data-price-point"          :    "fa5a04d3058f1c63b0760ff32a616c9f",
+                    "rel"                       :    "fa5a04d3058f1c63b0760ff32a616c9f",
+                }, {
+                    "data-funnel-id"            :    "71433",
+                    "data-product-id"           :    "71433",
+                    "data-price-point"          :    "1474c2c1c9d9ead72af09b4a1bcd345d",
+                    "rel"                       :    "1474c2c1c9d9ead72af09b4a1bcd345d",
+                }, {
+                    "data-funnel-id"            :    "74455",
+                    "data-product-id"           :    "74455",
+                    "data-price-point"          :    "fcc50999b4d866b075998b4c5c41e52b",
+                    "rel"                       :    "fcc50999b4d866b075998b4c5c41e52b",
+                }
+            */          
+
+        </script>
+</div>
+
+
+

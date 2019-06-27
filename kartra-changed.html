@@ -1,0 +1,163 @@
+
+<div data-embed="true" class="multiple-purcharge-form">
+
+    <!-- Style Are -->
+
+        <style type="text/css">
+            .custom-input-wrapper {
+                height: 38px;
+                display: flex;
+                align-items: center;
+            }
+            .custom-input-wrapper label {
+                margin: 0 0 0 7px;
+            }
+            input[type="radio"][name="custom_selected_product"] {
+                -webkit-appearance: none;
+                background-color: #fafafa;
+                border: 1px solid #cacece;
+                box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);
+                padding: 9px;
+                border-radius: 50px;
+                display: inline-block;
+                position: relative;
+                margin: 0;
+            }
+
+            input[type="radio"][name="custom_selected_product"]:checked:after {
+                content: ' ';
+                width: 12px;
+                height: 12px;
+                border-radius: 50px;
+                position: absolute;
+                top: 3px;
+                background: #99a1a7;
+                box-shadow: inset 0px 0px 10px rgba(0,0,0,0.3);
+                text-shadow: 0px;
+                left: 3px;
+                font-size: 32px;
+            }
+
+            input[type="radio"][name="custom_selected_product"]:checked {
+                background-color: #e9ecee;
+                color: #99a1a7;
+                border: 1px solid #adb8c0;
+                box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05), inset 15px 10px -12px rgba(255,255,255,0.1), inset 0px 0px 10px rgba(0,0,0,0.1);
+            }
+
+            input[type="radio"][name="custom_selected_product"]:active, input[type="radio"][name="custom_selected_product"]:checked:active {
+                box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px 1px 3px rgba(0,0,0,0.1);
+            }
+            .hidden {
+                display: none !important;
+            }
+            .multiple-purcharge-form-wrapper {
+                display: block;
+                position: relative;
+                padding: 20px 0;
+            }
+        </style>
+
+    <!-- HTML Area -->
+        <div class="custom-input-wrapper">
+            <input type="radio" name="custom_selected_product" id="selected_product_1" value="1" checked="checked">
+                <label for="selected_product_1" data-product_id="">buy Derma Roller</label>
+            <br>
+        </div>
+        <div class="custom-input-wrapper">
+            <input type="radio" name="custom_selected_product" id="selected_product_2" value="2">
+                <label for="selected_product_2" data-product_id="">Subscription</label>
+            <br>
+        </div>
+        <div class="custom-input-wrapper">
+            <input type="radio" name="custom_selected_product" id="selected_product_3" value="3">
+                <label for="selected_product_3">Buy 1 Derma Roller + 1 Vitamin C Serum Combo</label>
+            <br>
+        </div>
+
+        <div class="multiple-purcharge-form-wrapper">
+
+    <!-- Scripts Area -->
+        <script type="text/javascript">
+
+            console.log('before')
+
+            var productsArray = [
+                {
+                    "data-funnel-id"            :    "84549",
+                    "data-product-id"           :    "84549",
+                    "data-price-point"          :    "4e5d44ea60975aeee264afb849eba5d8",
+                    "rel"                       :    "4e5d44ea60975aeee264afb849eba5d8",
+                    "data-kt-value"             :    "4e5d44ea60975aeee264afb849eba5d8",
+                }, {
+                    "data-funnel-id"            :    "84549",
+                    "data-product-id"           :    "84549",
+                    "data-price-point"          :    "4909753c8bf5253c31571505ba705383",
+                    "rel"                       :    "4909753c8bf5253c31571505ba705383",
+                    "data-kt-value"             :    "4909753c8bf5253c31571505ba705383",
+                }, {
+                    "data-funnel-id"            :    "84554",
+                    "data-product-id"           :    "84554",
+                    "data-price-point"          :    "92c0f8a799f06f6d0e8124d99298a09b",
+                    "rel"                       :    "92c0f8a799f06f6d0e8124d99298a09b",
+                    "data-kt-value"             :    "92c0f8a799f06f6d0e8124d99298a09b",
+                }
+            ]
+
+
+            // $(document).ready(function() {
+                var current_obj = {};
+                for (var i = 0; i < productsArray.length; i++) {
+                    if (i == 0) {
+                        current_obj = productsArray[i];
+                    }
+                    var product_obj = productsArray[i];
+                    appendModalTemplate(product_obj);
+                }
+                $('.multiple-purcharge-form-wrapper').find('a[data-kt-value="' + current_obj['data-kt-value'] + '"]').removeClass('hidden');
+            // });
+
+            function appendModalTemplate(product_obj) {
+                var $form = $('.multiple-purcharge-form-wrapper');
+                if ($form.find('a[data-kt-value="' + product_obj['data-kt-value'] + '"]').length < 1) {
+                    $form.append(buttonTemplate(product_obj));
+                }
+            }
+
+            function buttonTemplate(product_obj) {
+                return '<a href="javascript:void(0);" class="hidden kartra_button1 kartra_button1--default kartra_button1--gradient kartra_button1--bordered-bg js_kartra_trackable_object kartra_button1--solid kartra_button1--large kartra_button1--squared kartra_button1--shadow-small pull-left toggle_product dg_popup" style="background-color: rgb(68, 188, 210); border-color: rgb(255, 255, 255); color: rgb(255, 255, 255); margin: 0px 0px 20px; font-weight: 400; font-family: Lato;" data-kt-type="checkout" data-kt-owner="jkO7ezkY" data-kt-value="' + product_obj['data-kt-value'] + '" data-funnel-id="' + product_obj['data-funnel-id'] + '" data-product-id="' + product_obj['data-product-id'] + '" data-price-point="' + product_obj['data-price-point'] + '" rel="' + product_obj['rel'] + '" data-frame-id="_9vlwmnd6e" data-asset-id="0" target="_parent">Buy It Now</a>';
+            }
+
+            $('input[type="radio"][name="custom_selected_product"]').click(function() {
+                var $form = $('.multiple-purcharge-form-wrapper');
+                var dataValue = productsArray[$(this).val() - 1];
+                $form.find('.dg_popup').each(function(index, element) {
+                    $(element).addClass('hidden');
+                })
+                $form.find('a[data-kt-value="' + dataValue['data-kt-value'] + '"]').removeClass('hidden');
+            });
+
+            /**
+                {
+                    "data-funnel-id"            :    "71431",
+                    "data-product-id"           :    "71431",
+                    "data-price-point"          :    "fa5a04d3058f1c63b0760ff32a616c9f",
+                    "rel"                       :    "fa5a04d3058f1c63b0760ff32a616c9f",
+                }, {
+                    "data-funnel-id"            :    "71433",
+                    "data-product-id"           :    "71433",
+                    "data-price-point"          :    "1474c2c1c9d9ead72af09b4a1bcd345d",
+                    "rel"                       :    "1474c2c1c9d9ead72af09b4a1bcd345d",
+                }, {
+                    "data-funnel-id"            :    "74455",
+                    "data-product-id"           :    "74455",
+                    "data-price-point"          :    "fcc50999b4d866b075998b4c5c41e52b",
+                    "rel"                       :    "fcc50999b4d866b075998b4c5c41e52b",
+                }
+            */          
+
+        </script>
+</div>
+
+
+
