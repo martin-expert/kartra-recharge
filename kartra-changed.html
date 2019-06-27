@@ -1,22 +1,56 @@
 
-<div data-embed="true" class="multiple-purcharge-form">
+<div class="multiple-purcharge-form"><div data-embed="true">
 
     <!-- Style Are -->
 
         <style type="text/css">
             .custom-input-wrapper {
                 height: 38px;
+                display: -webkit-box;
+                display: -ms-flexbox;
                 display: flex;
-                align-items: center;
+                -webkit-box-align: center;
+                    -ms-flex-align: center;
+                        align-items: center;
+                padding-left: 10px;
+            }
+            .custom-input-wrapper.is_active {
+                background: #F8F8F8;
             }
             .custom-input-wrapper label {
-                margin: 0 0 0 7px;
+                margin: 0 0 0 10px;
+            }
+
+            .custom-select-wrapper {
+                padding-left: 27px;
+                background: #F8F8F8;
+                padding: 6px 10px 6px 40px;
+                line-height: 1;
+                display: none;
+            }
+            .custom-select-wrapper select {
+                margin-left: 12px;
+                padding: 8px 38px 8px 16px;
+                -webkit-appearance: none;
+                -ms-appearance: none;
+                -moz-appearance: none;
+                -o-appearance: none;
+                appearance: none;
+                background: #fff url(//cdn.shopify.com/s/files/1/1824/2963/t/14/assets/select.png?1220) no-repeat 96% 50%;
+                background-size: 17px;
+                text-transform: capitalize;
+                border: 1px solid #d9dbdc;
+                color: #5f6a7d;
+            }
+            .custom-select-wrapper select:focus {
+                outline: 0;
             }
             input[type="radio"][name="custom_selected_product"] {
                 -webkit-appearance: none;
                 background-color: #fafafa;
                 border: 1px solid #cacece;
-                box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);
+                -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);
+                        box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);
                 padding: 9px;
                 border-radius: 50px;
                 display: inline-block;
@@ -32,7 +66,8 @@
                 position: absolute;
                 top: 3px;
                 background: #99a1a7;
-                box-shadow: inset 0px 0px 10px rgba(0,0,0,0.3);
+                -webkit-box-shadow: inset 0px 0px 10px rgba(0,0,0,0.3);
+                        box-shadow: inset 0px 0px 10px rgba(0,0,0,0.3);
                 text-shadow: 0px;
                 left: 3px;
                 font-size: 32px;
@@ -42,11 +77,18 @@
                 background-color: #e9ecee;
                 color: #99a1a7;
                 border: 1px solid #adb8c0;
-                box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05), inset 15px 10px -12px rgba(255,255,255,0.1), inset 0px 0px 10px rgba(0,0,0,0.1);
+                -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05), inset 15px 10px -12px rgba(255,255,255,0.1), inset 0px 0px 10px rgba(0,0,0,0.1);
+                        box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05), inset 15px 10px -12px rgba(255,255,255,0.1), inset 0px 0px 10px rgba(0,0,0,0.1);
+                outline: 0;
+            }
+
+            input[type="radio"][name="custom_selected_product"]:focus {
+                outline: 0;                
             }
 
             input[type="radio"][name="custom_selected_product"]:active, input[type="radio"][name="custom_selected_product"]:checked:active {
-                box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px 1px 3px rgba(0,0,0,0.1);
+                -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px 1px 3px rgba(0,0,0,0.1);
+                        box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px 1px 3px rgba(0,0,0,0.1);
             }
             .hidden {
                 display: none !important;
@@ -61,13 +103,21 @@
     <!-- HTML Area -->
         <div class="custom-input-wrapper">
             <input type="radio" name="custom_selected_product" id="selected_product_1" value="1" checked="checked">
-                <label for="selected_product_1" data-product_id="">buy Derma Roller</label>
+                <label for="selected_product_1" data-product_id="">Buy Derma Roller</label>
             <br>
         </div>
         <div class="custom-input-wrapper">
-            <input type="radio" name="custom_selected_product" id="selected_product_2" value="2">
+            <input type="radio" name="custom_selected_product" id="selected_product_2" value="2" data-trigger="select">
                 <label for="selected_product_2" data-product_id="">Subscription</label>
             <br>
+        </div>
+        <div class="custom-select-wrapper" data-for="selected_product_2">
+            <label>DELIVER EVERY</label>
+            <select>
+                <option value="1">1 month</option>
+                <option value="2">2 months</option>
+                <option value="3">3 months</option>
+            </select>
         </div>
         <div class="custom-input-wrapper">
             <input type="radio" name="custom_selected_product" id="selected_product_3" value="3">
@@ -80,7 +130,9 @@
     <!-- Scripts Area -->
         <script type="text/javascript">
 
-            console.log('before')
+            console.log('before');
+            var $form = $('.multiple-purcharge-form-wrapper');
+            var dataValue = 0;
 
             var productsArray = [
                 {
@@ -89,20 +141,36 @@
                     "data-price-point"          :    "4e5d44ea60975aeee264afb849eba5d8",
                     "rel"                       :    "4e5d44ea60975aeee264afb849eba5d8",
                     "data-kt-value"             :    "4e5d44ea60975aeee264afb849eba5d8",
-                }, {
-                    "data-funnel-id"            :    "84549",
-                    "data-product-id"           :    "84549",
-                    "data-price-point"          :    "4909753c8bf5253c31571505ba705383",
-                    "rel"                       :    "4909753c8bf5253c31571505ba705383",
-                    "data-kt-value"             :    "4909753c8bf5253c31571505ba705383",
-                }, {
+                }, {}, {
                     "data-funnel-id"            :    "84554",
                     "data-product-id"           :    "84554",
                     "data-price-point"          :    "92c0f8a799f06f6d0e8124d99298a09b",
                     "rel"                       :    "92c0f8a799f06f6d0e8124d99298a09b",
                     "data-kt-value"             :    "92c0f8a799f06f6d0e8124d99298a09b",
                 }
-            ]
+            ];
+
+            var subscriptionArray = [
+                {
+                    "data-funnel-id"            :    "84549",
+                    "data-product-id"           :    "84549",
+                    "data-price-point"          :    "8bbe220a63e2fbd8f5578a6603da877f",
+                    "rel"                       :    "8bbe220a63e2fbd8f5578a6603da877f",
+                    "data-kt-value"             :    "8bbe220a63e2fbd8f5578a6603da877f",
+                }, {
+                    "data-funnel-id"            :    "84549",
+                    "data-product-id"           :    "84549",
+                    "data-price-point"          :    "66bb3da7f3f6b71757174da4740daf01",
+                    "rel"                       :    "66bb3da7f3f6b71757174da4740daf01",
+                    "data-kt-value"             :    "66bb3da7f3f6b71757174da4740daf01",
+                }, {
+                    "data-funnel-id"            :    "84549",
+                    "data-product-id"           :    "84549",
+                    "data-price-point"          :    "7de63d4623e8a06339a45fef0f7b9f3e",
+                    "rel"                       :    "7de63d4623e8a06339a45fef0f7b9f3e",
+                    "data-kt-value"             :    "7de63d4623e8a06339a45fef0f7b9f3e",
+                }
+            ];
 
 
             // $(document).ready(function() {
@@ -114,13 +182,19 @@
                     var product_obj = productsArray[i];
                     appendModalTemplate(product_obj);
                 }
+
+                for (var i = 0; i < subscriptionArray.length; i++) {
+                    appendModalTemplate(subscriptionArray[i]);
+                }
+
                 $('.multiple-purcharge-form-wrapper').find('a[data-kt-value="' + current_obj['data-kt-value'] + '"]').removeClass('hidden');
             // });
 
             function appendModalTemplate(product_obj) {
-                var $form = $('.multiple-purcharge-form-wrapper');
-                if ($form.find('a[data-kt-value="' + product_obj['data-kt-value'] + '"]').length < 1) {
-                    $form.append(buttonTemplate(product_obj));
+                if (typeof product_obj['data-kt-value'] != 'undefined') {
+                    if ($form.find('a[data-kt-value="' + product_obj['data-kt-value'] + '"]').length < 1) {
+                        $form.append(buttonTemplate(product_obj));
+                    }
                 }
             }
 
@@ -129,35 +203,58 @@
             }
 
             $('input[type="radio"][name="custom_selected_product"]').click(function() {
-                var $form = $('.multiple-purcharge-form-wrapper');
-                var dataValue = productsArray[$(this).val() - 1];
-                $form.find('.dg_popup').each(function(index, element) {
-                    $(element).addClass('hidden');
-                })
-                $form.find('a[data-kt-value="' + dataValue['data-kt-value'] + '"]').removeClass('hidden');
+                dataValue = productsArray[$(this).val() - 1];
+
+                /* Hide / Show Buy button */
+                    $form.find('.dg_popup').each(function(index, element) {
+                        $(element).addClass('hidden');
+                    });
+
+                /* Element Viewing Update */
+                    var $formWrapper = $('.multiple-purcharge-form');
+                    $formWrapper.find('.custom-input-wrapper').removeClass('is_active');
+                    $(this).closest('.custom-input-wrapper').addClass('is_active');
+
+                /* Hide / Show Buy button | [ selected ] | normal Option */
+                    if (typeof dataValue['data-kt-value'] != 'undefined') {
+                        $form.find('a[data-kt-value="' + dataValue['data-kt-value'] + '"]').removeClass('hidden');
+                    }
+
+                /* Element Viewing Update | [ selected ] */
+                    $formWrapper.find('.custom-select-wrapper').hide();
+                    if ($(this).attr('data-trigger') == 'select') {
+                        if ($formWrapper.find('.custom-select-wrapper[data-for="' + $(this).attr('id') + '"]').length > 0) {
+                            var $selectWrapper = $formWrapper.find('.custom-select-wrapper[data-for="' + $(this).attr('id') + '"]');
+
+                            /* Hide / Show: Select Wrapper | subscription */
+                                $selectWrapper.show();
+
+                            /* Hide / Show Buy button | [ selected ] | subscription */
+                                if (typeof $selectWrapper.find('select').val() != 'undefined') {
+                                    var dataValue = subscriptionArray[$selectWrapper.find('select').val() - 1];
+
+                                    $form.find('a[data-kt-value="' + dataValue['data-kt-value'] + '"]').removeClass('hidden');
+                                }
+                        }
+                    }
+
             });
 
-            /**
-                {
-                    "data-funnel-id"            :    "71431",
-                    "data-product-id"           :    "71431",
-                    "data-price-point"          :    "fa5a04d3058f1c63b0760ff32a616c9f",
-                    "rel"                       :    "fa5a04d3058f1c63b0760ff32a616c9f",
-                }, {
-                    "data-funnel-id"            :    "71433",
-                    "data-product-id"           :    "71433",
-                    "data-price-point"          :    "1474c2c1c9d9ead72af09b4a1bcd345d",
-                    "rel"                       :    "1474c2c1c9d9ead72af09b4a1bcd345d",
-                }, {
-                    "data-funnel-id"            :    "74455",
-                    "data-product-id"           :    "74455",
-                    "data-price-point"          :    "fcc50999b4d866b075998b4c5c41e52b",
-                    "rel"                       :    "fcc50999b4d866b075998b4c5c41e52b",
-                }
-            */          
+            $('.custom-select-wrapper select').change(function() {
+                dataValue = subscriptionArray[$(this).val() - 1];
 
+                /* Hide / Show Buy button */
+                    $form.find('.dg_popup').each(function(index, element) {
+                        $(element).addClass('hidden');
+                    });
+
+                if (typeof dataValue['data-kt-value'] != 'undefined') {
+                    $form.find('a[data-kt-value="' + dataValue['data-kt-value'] + '"]').removeClass('hidden');
+                }
+            });
         </script>
 </div>
 
 
 
+</div></div>
