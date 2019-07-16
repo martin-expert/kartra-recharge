@@ -1,0 +1,248 @@
+
+<div data-embed="true">
+<div class="multiple-purcharge-form">
+    <!-- Style Are -->
+
+        <style type="text/css">
+            .custom-input-wrapper {
+                height: 38px;
+                display: -webkit-box;
+                display: -ms-flexbox;
+                display: flex;
+                -webkit-box-align: center;
+                    -ms-flex-align: center;
+                        align-items: center;
+                padding-left: 10px;
+            }
+            .custom-input-wrapper.is_active {
+                background: #F8F8F8;
+            }
+            .custom-input-wrapper label {
+                margin: 0 0 0 10px;
+            }
+
+            .custom-select-wrapper {
+                padding-left: 27px;
+                background: #F8F8F8;
+                padding: 6px 10px 6px 40px;
+                line-height: 1;
+                display: none;
+            }
+            .custom-select-wrapper select {
+                margin-left: 12px;
+                padding: 8px 38px 8px 16px;
+                -webkit-appearance: none;
+                -ms-appearance: none;
+                -moz-appearance: none;
+                -o-appearance: none;
+                appearance: none;
+                background: #fff url(//cdn.shopify.com/s/files/1/1824/2963/t/14/assets/select.png?1220) no-repeat 96% 50%;
+                background-size: 17px;
+                text-transform: capitalize;
+                border: 1px solid #d9dbdc;
+                color: #5f6a7d;
+            }
+            .custom-select-wrapper select:focus {
+                outline: 0;
+            }
+            input[type="radio"][name="custom_selected_product"] {
+                -webkit-appearance: none;
+                background-color: #fafafa;
+                border: 1px solid #cacece;
+                -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);
+                        box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);
+                padding: 9px;
+                border-radius: 50px;
+                display: inline-block;
+                position: relative;
+                margin: 0;
+            }
+
+            input[type="radio"][name="custom_selected_product"]:checked:after {
+                content: ' ';
+                width: 12px;
+                height: 12px;
+                border-radius: 50px;
+                position: absolute;
+                top: 3px;
+                background: #99a1a7;
+                -webkit-box-shadow: inset 0px 0px 10px rgba(0,0,0,0.3);
+                        box-shadow: inset 0px 0px 10px rgba(0,0,0,0.3);
+                text-shadow: 0px;
+                left: 3px;
+                font-size: 32px;
+            }
+
+            input[type="radio"][name="custom_selected_product"]:checked {
+                background-color: #e9ecee;
+                color: #99a1a7;
+                border: 1px solid #adb8c0;
+                -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05), inset 15px 10px -12px rgba(255,255,255,0.1), inset 0px 0px 10px rgba(0,0,0,0.1);
+                        box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05), inset 15px 10px -12px rgba(255,255,255,0.1), inset 0px 0px 10px rgba(0,0,0,0.1);
+                outline: 0;
+            }
+
+            input[type="radio"][name="custom_selected_product"]:focus {
+                outline: 0;                
+            }
+
+            input[type="radio"][name="custom_selected_product"]:active, input[type="radio"][name="custom_selected_product"]:checked:active {
+                -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px 1px 3px rgba(0,0,0,0.1);
+                        box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px 1px 3px rgba(0,0,0,0.1);
+            }
+            .hidden {
+                display: none !important;
+            }
+            .multiple-purcharge-form-wrapper {
+                display: block;
+                position: relative;
+                padding: 20px 0;
+            }
+        </style>
+
+    <!-- HTML Area -->
+        <div class="custom-input-wrapper is_active" data-type="onetime">
+            <input type="radio" name="custom_selected_product" id="selected_product_1" value="1" checked="checked">
+                <label for="selected_product_1" data-product_id="">One-time Purchase</label>
+            <br>
+        </div>
+        <div class="custom-input-wrapper" data-type="autodeliver" data-id="selected_product_2">
+            <input type="radio" name="custom_selected_product" value="2" id="selected_product_2" data-trigger="select">
+                <label for="selected_product_2" data-product_id="">Subscribe & Save (10%)</label>
+            <br>
+        </div>
+        <div class="custom-select-wrapper" data-for="selected_product_2">
+            <label>DELIVER EVERY</label>
+            <select>
+                <option value="1">1 month</option>
+                <option value="2">2 months</option>
+                <option value="3">3 months</option>
+            </select>
+        </div>
+        <div class="custom-input-wrapper" data-type="onetime" 
+            data-bundle="true">
+            <input type="radio" name="custom_selected_product" id="selected_product_3" value="3">
+                <label for="selected_product_3">Buy 1 Derma Roller + 1 Vitamin C Serum Combo</label>
+            <br>
+        </div>
+
+        <div class="multiple-purcharge-form-wrapper">
+            <a href="#" class="kartra_button1 kartra_button1--default kartra_button1--solid kartra_button1--large kartra_button1--squared pull-left" style="background-color: rgb(68, 188, 210); color: rgb(255, 255, 255); margin: 0px 0px 20px; font-weight: 400; font-family: Lato;" id="purchase-to-shopify">Buy It Now</a>
+        </div>
+        <script type="text/javascript">
+            var isCheckout = false;
+            var $buttonElement;
+            var iframeIndex = 0;
+
+            var productBundleHandles = [
+                'sdara-skincare-derma-roller-0-25mm',
+                'sdara-skincare-vitamin-c-serum',
+            ];
+
+            $(document).ready(function() {
+                var $iframe = $('#recharge_preload');
+                var $formWrapper = $('.multiple-purcharge-form');
+
+                /* Event to show element */
+                    $('input[type="radio"][name="custom_selected_product"]').click(function() {
+                        var $thisInputWrapper = $(this).closest('.custom-input-wrapper');
+
+                        $formWrapper.find('.custom-input-wrapper').removeClass('is_active');
+                        $(this).closest('.custom-input-wrapper').addClass('is_active');
+
+                        $formWrapper.find('.custom-select-wrapper').hide();
+                        if ($(this).attr('data-trigger') == 'select') {
+                            var selector = `.custom-select-wrapper[data-for="${$thisInputWrapper.attr('data-id')}"]`;
+                            if ($formWrapper.find(selector).length > 0) {
+                                var $selectWrapper = $formWrapper.find(selector);
+                                /* Hide / Show: Select Wrapper | subscription */
+                                    $selectWrapper.show();
+                            }
+                        }                    
+                    });
+
+                /* Event to purchase */
+                    $('#purchase-to-shopify').click(function(e) {
+                        $buttonElement = $(this);
+                        $inputWrapper = $formWrapper.find('.custom-input-wrapper.is_active');
+                        if ($inputWrapper.length > 0) {
+                            e.preventDefault();
+
+                            var url = "//sdaraskin.com/pages/recharge-landing";
+
+                            if (typeof $inputWrapper.attr('data-type') != 'undefined') {
+                                url = url + "?purchaseType=" + $inputWrapper.attr('data-type');
+                            }
+                            if (typeof $inputWrapper.attr('data-id') != 'undefined') {
+                                var selectValue = $formWrapper.find(`.custom-select-wrapper[data-for="${$inputWrapper.attr('data-id')}"]`).find('select').val();
+                                url = url + "&purchaseInterval=" + selectValue;
+                            }
+
+                            url = url + "&preview_theme_id=46340407354";
+
+                            iframeIndex = 0;
+
+                            if (typeof $inputWrapper.attr('data-bundle') != 'undefined') {
+                                for (var i=0; i < productBundleHandles.length; i++) {
+                                    var _url = url + "&productHandle=" + productBundleHandles[i];
+                                    loadIframe(`recharge_preload_${iframeIndex}`, _url);
+                                    iframeIndex ++;
+                                }
+                            } else {
+                                loadIframe(`recharge_preload_${iframeIndex}`, url);
+                            }
+
+                            $buttonElement.html('Processing...');
+                            setTimeout(function() {
+                                openWindows();
+                            }, 3000);
+                        }
+                    });
+            });
+
+            function loadIframe(iframeName, url) {
+
+                if ($(`#${iframeName}`).length < 1) {
+                    $('.multiple-purcharge-form').append(`<iframe src="" style="display: none;" id="${iframeName}" onload="content_finished_loading(this)"></iframe>`);
+                }
+
+                var $iframe = $('#' + iframeName);
+                if ( $iframe.length ) {
+                    $iframe.attr('src',url);   
+                    return false;
+                }
+                return true;
+            }
+
+            var content_start_loading = function() {
+                console.log("start_loading");
+            };
+
+            var content_finished_loading = function(iframe) {
+                // indicator.style.display = 'none';
+                console.log("finished_loading");
+            };
+
+            function openWindows() {
+                var width = window.innerWidth * 0.66 ;
+                // define the height in
+                var height = width * window.innerHeight / window.innerWidth ;
+                // Ratio the hight to the width as the user screen ratio
+
+                var left = (window.innerWidth - width) / 2;
+                var top = (window.innerHeight - height) / 2;
+
+                if (width < 320) {
+                    width = 320;
+                    left = 0;
+                }
+
+                window.open('//sdaraskin.com/cart?autosubmit=true', 'newwindow', `width=${width}, height=${height}, top=${top}, left=${left}`);
+                // var window_alt = window.open('//sdaraskin.com/cart?autosubmit=true', 'newwindow', `width=1, height=1, top=${top}, left=${left}`);
+                $buttonElement.html('Buy It Now');
+            }
+
+        </script>
+
+
+</div></div>
